@@ -25,18 +25,16 @@ Make sure to replace `$version` or `${version}` with the desired version of the 
 
 ```kotlin
     import tech.eitri.android.geolocation.GeolocationModule
+    
     // [...]
 
-    val (eitriMachine, _) = EitriMachineInstanceManager.start()
+    val machineContext = EitriMachineInstanceManager.start()
+    val mainEitriMachine = machineContext.mainMachine
 
-    CoroutineScope(Dispatchers.IO).launch {
-        eitriMachine.configure(
-            // configure params
-        )
-    }
+    // configure eitri-machine [...]
 
     // register modules
-    eitriMachine.modules.register(GeolocationModule())
+    mainEitriMachine.modules.register(GeolocationModule())
 ```
 
 ## Core Concepts
