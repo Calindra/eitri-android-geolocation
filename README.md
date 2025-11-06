@@ -21,6 +21,14 @@ dependencies {
 
 Make sure to replace `$version` or `${version}` with the desired version of the module. You can find the latest version on [Maven Central](https://central.sonatype.com/artifact/tech.eitri/eitri-android-geolocation).
 
+### Proguard Rules (`proguard-rules.pro`)
+
+Please add the following rule to `proguard-rules.pro`
+
+```kotlin
+-keep class tech.eitri.** { *; }
+```
+
 ## Registering geolocation module
 
 ```kotlin
