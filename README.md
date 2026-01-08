@@ -7,7 +7,7 @@ Geolocation module for the [`Eitri Android framework`](https://github.com/Calind
 - Android 5.0 (API level 21) or later
 - Google Play Services available on the target device
 
-## Instalation
+## Installation
 
 The `eitri-android-geolocation` artifact is available on Maven Central.
 
@@ -20,14 +20,6 @@ dependencies {
 ```
 
 Make sure to replace `$version` or `${version}` with the desired version of the module. You can find the latest version on [Maven Central](https://central.sonatype.com/artifact/tech.eitri/eitri-android-geolocation).
-
-### Proguard Rules (`proguard-rules.pro`)
-
-Please add the following rule to `proguard-rules.pro`
-
-```kotlin
--keep class tech.eitri.** { *; }
-```
 
 ## Registering geolocation module
 
@@ -44,6 +36,27 @@ Please add the following rule to `proguard-rules.pro`
     // register modules
     mainEitriMachine.modules.register(GeolocationModule())
 ```
+
+## Background Location Permission (Optional)
+
+If your app needs to access location when running in the background, you must add the background location permission to your app's `AndroidManifest.xml`:
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Other permissions -->
+
+    <!-- Required only if using upgradeToBackgroundPermission() method -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Application configuration -->
+</manifest>
+```
+
+**Important Notes:**
+- This permission is **only required** if you use the `upgradeToBackgroundPermission()` method from Bifrost
+- Only available on Android 10 (API 29) and later
+- On Android 10+, background location requires a separate permission request after foreground location permission is granted
+- The module does not include this permission by default to avoid unnecessary permission declarations
 
 ## Core Concepts
 
